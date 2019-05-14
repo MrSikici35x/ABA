@@ -1,0 +1,286 @@
+% Documentclass definition
+\documentclass[12pt,a4paper]{scrreprt}
+
+% Code Input Design
+\usepackage[utf8]{inputenc}
+\usepackage[table,xcdraw]{xcolor} 
+\usepackage{listings}
+\usepackage{color}
+
+\usepackage{float}
+\usepackage{hyperref} 
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+% inlcuded packages
+
+\usepackage{graphicx}
+\usepackage{fancyhdr} 
+\usepackage[labelfont={bf,sf},font={small},%
+  labelsep=space]{caption}
+
+% Design Header and Footer
+\fancypagestyle{plain}{}
+\pagestyle{fancy} %activate own pagestyle
+\fancyhf{} %clear all header- and footer-fields
+
+% Header
+\fancyhead[L]{{\scriptsize Point in polygon test}}
+\fancyhead[R]{\includegraphics[width=100px, height=20px]{3.png}}
+
+%Footer
+\fancyfoot[L]{{\scriptsize Internal}} %links
+\fancyfoot[C]{{\scriptsize \thepage}} %Mitte
+\fancyfoot[R]{{\scriptsize © Continental AG}}
+\renewcommand{\footrulewidth}{0.4pt}
+\usepackage[english]{babel}
+
+% Language settings for table of content
+\addto\captionsgerman{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {Inhaltsverzeichnis}%
+}
+
+\renewcommand*\chapterheadstartvskip{\vspace*{0cm}}
+
+\begin{document}
+\begin{titlepage}
+
+	% title page 
+	\centering
+	{\scshape\LARGE Continental GmbH Villingen \par}
+	\vspace{2cm}
+	{\scshape\Large test specification \par}
+	\vspace{1.5cm}
+	{\huge\bfseries "point in polygon test"\par}
+	\vspace{2cm}
+	{\Large\itshape I CVAM RD SWS TTS SW \par}
+	\vfill
+	written by\par
+	Bilal \textsc{Özcan}
+
+	% Logo 
+	\vfill
+	\begin{figure}
+	\centering
+	\includegraphics{Logo1.jpg}
+	\vspace{1cm}
+	\end{figure}
+
+	% Date
+	{\large \today\par}
+	\end{titlepage}
+
+	% newpage
+	\newpage
+	
+\chapter*{Introducing}
+\begin{flushleft}
+Todays technologie uses GPS for orientation, to find out where a place is or to know how to get to this place from the current location. So this technologie become a important part of other devices like naviagtionsystems or routingsystems. But the question is how do this devices work. How do they know where a place is or where they're current position is. This document answers the question: When I have GPS coordinates of my current location, how do I know in which country I am. It defines mathematical solutions and also gives advice to implement this solution into source code. To know in which country we are, we consider a country as a polygon. To do this, we consider the boundary of a country as a collection of points. We move in the two-dimensional space, so each point has a x-coordinate and y-coordinate. The GPS data is also defined as a point which contains x and y-coordinates.\\
+\vspace{0.5cm}
+The result of my research showed, that there are three mathematical ways to check, whether a point is in a polygon or not. In the rest of this documentation, I'll go into more detail of this three solutions.
+
+
+
+\end{flushleft}
+
+
+\newpage
+% Inhaltsverzeichnis
+\tableofcontents
+\newpage
+
+
+\chapter{Test-Cases}
+\section{Test 1}
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[H]
+\begin{tabular}{|
+>{\columncolor[HTML]{FFCB2F}}l |
+>{\columncolor[HTML]{00D2CB}}l |}
+\hline
+\multicolumn{2}{|c|}{\cellcolor[HTML]{FFCB2F}\textbf{TestCase No. 1}} \\ \hline
+\textbf{Test-Case-ID}               & {\color[HTML]{333333} 12}       \\ \hline
+\textbf{Description}                & {\color[HTML]{333333} as}       \\ \hline
+\textbf{Purpose}                    & {\color[HTML]{333333} ds}       \\ \hline
+\textbf{Test-case type}             & {\color[HTML]{333333} fd}       \\ \hline
+\textbf{Preconditions}              & {\color[HTML]{333333} fg}       \\ \hline
+\textbf{Test sequence}              & {\color[HTML]{333333} hgj}      \\ \hline
+\textbf{Additional information}     & {\color[HTML]{333333} ghjg}     \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+
+\newpage
+\section{Point in level}
+In this mathematical solution, we consider each country as a level and we check if the test point lies in this level or not. So in this solution we only have to possible cases.
+
+\vspace{0.1cm}
+\begin{itemize}
+\item test point lies not in the level 
+\item test point lies in the level
+\end{itemize}
+\vspace{0.1cm}
+
+This solution base on Linear algebra where this is calculation is defined as:\\
+
+\vspace{0.5cm}
+First of all this calculation is in a three-dimensional space.
+
+\begin{itemize}
+\item[1.)] You need the linear equation of the level in parametric form
+\item[2.)] Then you equate the linear equation with the position vector of the test point
+\item[3.)] To solve this you consider this as three equations with one variable
+\item[4.)] For solving all three equations, you use the Gauß-Jordan-algorithm
+\item[5.)] If the value of all the three Variables is the same, the test point lies in the level, in every other case the point lies not in the level
+\end{itemize}
+In figure \ref{pointInLevel} you can see a simple sketch of this solution. The big difficulty in this solution is that you first have to set up an linear equation for each country in parametric form. So this means great expense before you can use this solution in a algorithm. If you would have all this data, it would be a very fast algorithm, but as meantioned before you need this for each country.
+
+
+\begin{figure}[b] 
+\centering
+\includegraphics[width=300px, height=160px]{point-level.jpg}
+\renewcommand{\figurename}{Fig.}
+\caption{Point in level} 
+\label{pointInLevel}
+\end{figure}
+
+\newpage
+\section{Camille Jordan's point-in-polygon test}
+\begin{flushleft}
+Camille Jordan's point-in-polygon test, checks to see if a particular point in the plane is inside, outside, or at the boundary of a polygon. To put it simply, the edges of a polygon divide the data space into an inside and an outside, according to the Jordanian curve set. For many applications it is necessary to find out if a point lies inside or outside a polygon. In the ray method, a ray is sent in any direction from the point to be tested. It counts how many times the ray intersects the edges of the polygon. Four cases can be distinguished:\\
+
+\vspace{0.1cm}
+\begin{itemize}
+\item no intersection
+\item an even number of intersections
+\item an odd number of intersections
+\item infinite intersections
+\end{itemize}
+\vspace{0.1cm}
+
+If the number is zero, the point is outside the polygon like point h on the Fig. \ref{figure1}. If the number is odd, the point is within the polygon like point f on the Fig. \ref{figure1}, if it is even, it is outside like point c on the Fig. \ref{figure1}. In the case of an infinite number of points of intersection, the ray was directly on an edge. The test must then be repeated at a different angle. However, by refining the relative position of the test point and the edge ends in the collinear case, such a repetition with a different angle can be dispensed with. 
+\end{flushleft}
+
+\begin{figure}[b] 
+\centering
+\includegraphics[width=300px, height=140px]{polygon1-solution1.png}
+\renewcommand{\figurename}{Fig.}
+\caption{Point in Polygon} 
+\label{figure1}
+\end{figure}
+
+% new page
+\newpage
+\subsection{Problem and solution of the algorithm}
+\begin{flushleft}
+As I mentioned in the text before, there are four possbile cases. 
+\vspace{0.1cm}
+\begin{itemize}
+\item no intersection
+\item an even number of intersections
+\item an odd number of intersections
+\item infinite intersections
+\end{itemize}
+\vspace{0.1cm}
+The "Problem-Case" is the fourth one: \textbf{Infinite Intersections}\\
+The result of the algorithm in this case views that the point is outside the polygon even if it is inside. To solve this, the mathematician Camile Jordan, who also created the algorithm and mathematical solution for this problem, reports in his documentation that you just have to change the angle of the ray which intersects the polygon. After that you get the right result.\\
+\vspace{0.5cm}
+To creat a ray that intersects the polygon, you use two points. The first point is the point to test and the second one is an extreme point which has the same y-coordinate like the test point but the highest positiv x-coordinate possible. So this extrem point has to be outside the polygon in any case.\\
+\vspace{0.5cm}
+\textbf{Changing the angle:} This happens by adding one to the y-coordinate of the extreme point. After that the algorithm works correct and is precise.\\
+\vspace{0.5cm}
+In the figure \ref{problemSketch}, there is a simple sketch of the solution.
+\end{flushleft}
+
+
+
+\begin{figure}[h] 
+\centering
+\includegraphics[width=500px, height=500px]{PP-Solution.PNG}
+\renewcommand{\figurename}{Fig.}
+\caption{Sketch of the changed angle} 
+\label{problemSketch}
+\end{figure}
+
+
+% next chapter
+\chapter{Optimization for all algorithms}
+\begin{flushleft}
+Another topic is here optimization, which means if you want to find out, where you are? You do this step by step. First you look on which continent you are, after that you look in which part of the continent (north, west, east, south). If you do this that way you have to check less countrys and you restruct the possibilities. So the algorithm needs to check less countries and that makes the hole process faster. This optimization helps to make this algorithms as fast as possible.
+\end{flushleft}
+
+
+% next chapter
+\chapter{Which solution do we use and why?}
+\begin{flushleft}
+I decided to use the point in polygon test defined by Camile Jordan, because it is mathematically defined as the fastest and best solution to solve this problem and it also has the needed quality and precision for our requirements. So it fits the best for our usecase. Also known big navigation companies, which are considered experts in this field, use the point in polygon test defined by Camile Jordan in they're systems for routing and locating functionalities.
+\end{flushleft}
+
+% next chapter
+\chapter{Implementation in C-Code}
+\begin{flushleft}
+Filename: PointInPolygon.c
+\\
+The Algorithm needs three parameters and returns than a bool value. These parameters are the currentlocation or the testpoint as Point datatype with X and Y coordinates. Than the polygon as a pointer of the polygon array as array of Pojnts which defines the polygon.
+At least the number of vertices the polygon itself has.\\
+
+
+\end{flushleft}
+
+
+% next chapter
+\newpage
+\chapter{Sources of my research}
+\begin{flushleft}
+\vspace{0.1cm}
+\begin{itemize}
+\item \url{https://de.wikipedia.org/wiki/Punkt-in-Polygon-Test_nach_Jordan}
+\item \url{https://de.wikipedia.org/wiki/Jordanscher_Kurvensatz}
+\item \url{http://assets.press.princeton.edu/chapters/s9489.pdf}
+\item \url{http://www-cgrl.cs.mcgill.ca/~godfried/teaching/cg-projects/97/Octavian/compgeom.html}
+\item \url{https://books.google.de/books?id=InJL6iAaIQQC&pg=PA2&lpg=PA2&dq=point+in+polygon+camille+jordan&source=bl&ots=5_H3fZV65S&sig=ACfU3U3NAKn6WX9rRgTgSiiSgCLcsxqcIQ&hl=en&sa=X&ved=2ahUKEwjdpqmV-t3gAhWC2uAKHRytCjcQ6AEwDnoECAIQAQ#v=onepage&q=point\%20in\%20polygon\%20camille%20jordan&f=false}
+\end{itemize}
+\vspace{0.1cm}
+
+
+
+
+
+\end{flushleft}
+\end{document}
+
+	
+	
+
+
+

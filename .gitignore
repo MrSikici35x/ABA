@@ -1,0 +1,83 @@
+#****************************** GitIgnore-File **************************************
+# + Developer:   Bilal Oezcan
+# + Description: This GitIgnore-File defines filetypes which git should ignore, so 
+#                this filetypes are not under version control
+# + Responsible: Bilal Oezcan
+# + Department:  I CVAM RD SW 2
+# + Copyright:   Continental GmbH Villingen (Continental AG)
+#************************************************************************************
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.exe.*
+*.o
+*.so
+
+# Picture files #
+#################
+*.jpg
+*.png
+*.jpeg
+
+# Documentation Formats #
+#########################
+*.docx
+*.pdf
+*.xlsx
+
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Scripts #
+###########
+*.sh
+*.bat
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.project
+.cproject
+Debug
+*.settings
+
+# Latex generated files #
+#########################
+*.synctex.gz
+*.toc
+*.aux
+*.out
+*.bbl
+*.blg
+
+# unnessaccry folders #
+#########################
+bin
+.settings
